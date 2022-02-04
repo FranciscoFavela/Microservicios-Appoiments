@@ -2,9 +2,13 @@ server:
   port: 8081
 spring:
   cloud:
-    server:
-      git:
-        uri: https://github.com/FranciscoFavelaNajera/Microservicios-Appoiments
-        search-paths: config-data
+    config:
+      server:
+        git:
+          uri: https://github.com/FranciscoFavelaNajera/Microservicios-Appoiments.git
+          searchPaths: config-data
+          username: ${GIT_USER}
+          password: ${GIT_PASSWORD}
+          default-label: "main"
   application:
     name: config-service

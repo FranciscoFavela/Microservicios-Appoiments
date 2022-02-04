@@ -1,0 +1,11 @@
+server:
+  port: 8081
+spring:
+  cloud:
+    server:
+      git:
+        defaul-label:
+        uri: https://github.com/FranciscoFavelaNajera/Microservicios-Appoiments
+        search-paths: config-data
+  application:
+    name: config-service

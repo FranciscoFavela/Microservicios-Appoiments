@@ -3,7 +3,14 @@ spring:
     url: jdbc:mysql://localhost:13306/db_appoiment?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: mysqluser
     password: secret
-
+eureka:
+  client:
+    fetch-registry: true
+    register-with-eureka: true
+    service-url:
+      default-zone:http://localhost:8761/eureka
+    instance:
+      hostname: localhost
 
   #mostar por consola los datos de los queries
   jpa:

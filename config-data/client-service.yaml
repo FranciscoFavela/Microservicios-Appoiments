@@ -5,6 +5,31 @@ spring:
     url: jdbc:mysql://localhost:13306/db_appoiment?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: mysqluser
     password: secret
+resilience4j.circuitbreaker:
+    instances:
+        clientCB:
+            registerHealthIndicator: true
+            slidingWindowSize: 100
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            permittedNumberOfCallsInHalfOpenState: 3
+            slidingWindowType: TIME_BASED
+            minimumNumberOfCalls: 20
+            waitDurationInOpenState: 50s
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10
+        appoimentCD:
+            registerHealthIndicator: true
+            slidingWindowSize: 100
+            registerHealthIndicator: true
+            slidingWindowSize: 10
+            permittedNumberOfCallsInHalfOpenState: 3
+            slidingWindowType: TIME_BASED
+            minimumNumberOfCalls: 20
+            waitDurationInOpenState: 50s
+            failureRateThreshold: 50
+            eventConsumerBufferSize: 10
+            
 eureka:
   client:
     fetch-registry: true

@@ -1,10 +1,10 @@
 server:
   port: ${PORT:${SERVER_PORT:0}}
 spring:
-  datasource:
-    url: jdbc:mysql://localhost:13306/db_appoiment?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-    username: mysqluser
-    password: secret
+#  datasource:
+#    url: jdbc:mysql://localhost:13306/db_appoiment?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+#    username: mysqluser
+#    password: secret
 eureka:
   client:
     fetch-registry: true

@@ -5,6 +5,14 @@ spring:
     url: jdbc:mysql://localhost:13306/db_appoiment?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: mysqluser
     password: secret
+  #mostar por consola los datos de los queries
+  jpa:
+    show-sql: true
+    #autogenera las tablas
+    hibernate:
+      ddl-auto: update
+    #dialecto de las base de datos
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
 eureka:
   client:
     fetch-registry: true
@@ -37,11 +45,3 @@ resilience4j.circuitbreaker:
             waitDurationInOpenState: 5s
             failureRateThreshold: 50
             eventConsumerBufferSize: 10
-  #mostar por consola los datos de los queries
-  jpa:
-    show-sql: true
-    #autogenera las tablas
-    hibernate:
-      ddl-auto: update
-    #dialecto de las base de datos
-    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect

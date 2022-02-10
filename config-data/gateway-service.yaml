@@ -18,8 +18,9 @@ spring:
         - id: client-service
           uri: lb://client-service
           predicates:
-            - Path=/clients/**
+            - Path=/api/v1/clients/**
         - id: appoiment-service
           uri: lb://appoiment-service
           predicates:
-            - Path=/appoiment/**
+            - Path=/api/v1/appoiment/**
+            

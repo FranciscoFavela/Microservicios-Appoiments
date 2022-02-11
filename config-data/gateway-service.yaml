@@ -11,6 +11,8 @@ eureka:
 spring:
   cloud:
     gateway:
+      default-filters:
+        - TokenRelay
       discovery:
         locator:
           enabled: true
@@ -19,8 +21,25 @@ spring:
           uri: lb://client-service
           predicates:
             - Path=/api/v1/clients/**
+          filters:
+            - RemoveRequestHeader=Cookie
         - id: appoiment-service
           uri: lb://appoiment-service
           predicates:
             - Path=/api/v1/appoiment/**
-            
+  security:
+    oauth2:
+      client:
+        provider:
+          keycloak:
+            authorization-uri: http://localhost:8180/auth/realms/realm-test/protocol/openid-connect/auth
+            userinfo-uri: http://localhost:8180/auth/realms/realm-test/protocol/openid-connect/userinfo
+            user-name-attribute: preferred_username
+            token-uri: http://localhost:8180/auth/realms/realm-test/protocol/openid-connect/token
+        registration:
+          realm-test:
+            provider: keycloak
+            client-id: test-client
+            client-secret: cVbVbVLWVIR4abqa5IFncD3pHTPA60B2
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/test-client"

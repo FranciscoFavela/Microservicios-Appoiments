@@ -7,6 +7,7 @@ import com.microservicios.appoimentservice.entities.Appoiment;
 import com.microservicios.appoimentservice.model.AppoimentClient;
 import com.microservicios.appoimentservice.model.Client;
 import com.microservicios.appoimentservice.services.AppoimentServiceImpl;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import org.apache.coyote.Response;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,10 +60,13 @@ public class AppoimentController extends BaseControllerImpl<Appoiment, Appoiment
     public CompletableFuture<ResponseEntity> getOneAsyncDto(@PathVariable Long id) throws Exception {
         return servicio.getOneAppoimentDTO(id).thenApply(ResponseEntity::ok);
     }
-
+    @CircuitBreaker(name ="clientCB",fallbackMethod = "fallBackGetAppoimentAndClient")
     @GetMapping("/testgetone/{id}")
     public ResponseEntity<AppoimentClient> getOneAppoiment(@PathVariable Long id) throws Exception {
         return ResponseEntity.ok(servicio.getOneAppoiment(id));
     }
 
+    public ResponseEntity<AppoimentClient> fallBackGetAppoimentAndClient(@PathVariable Long id,RuntimeException e) throws Exception {
+        return new  ResponseEntity("problemas al obtener el cliente "+ id,HttpStatus.OK);
+    }
 }

@@ -80,7 +80,6 @@ public class AppoimentServiceImpl extends BaseServiceImpl<Appoiment, Long> imple
         LOGGER.info("Request to Get One Appoiment-Client");
         Optional<Appoiment> appoiment =appoimentRepository.findById(id);
         Client client = clientFeignClient.getOneAsync(id);
-
         AppoimentClient appoimentClient = new AppoimentClient();
         appoimentClient.setClient(client);
         appoimentClient.setAppoimentroom(appoiment.get().getAppoimentroom());

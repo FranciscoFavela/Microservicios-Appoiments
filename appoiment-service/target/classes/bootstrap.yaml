@@ -2,6 +2,11 @@ server:
   port: ${PORT:${SERVER_PORT:0}}
 
 spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8180/auth/realms/realm-test
   application:
     name: appoiment-service
   cloud:

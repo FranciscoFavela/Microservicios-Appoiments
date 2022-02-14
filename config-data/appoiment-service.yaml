@@ -5,8 +5,6 @@ spring:
     url: jdbc:mysql://localhost:13306/db_appoiment?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
     username: mysqluser
     password: secret
-  application:
-    zipkin: http://localhost:9411
   #mostar por consola los datos de los queries
   jpa:
     show-sql: true
@@ -35,4 +33,3 @@ resilience4j.circuitbreaker:
             waitDurationInOpenState: 5s
             failureRateThreshold: 50
             eventConsumerBufferSize: 10
-       
